@@ -16,6 +16,10 @@ export class Store {
     });
   }
 
+  setItem(item){
+    this.item = item;
+  }
+
   /**
    * if we have an authenticated user then get all of the profile
    * information from the database and associate it with the active

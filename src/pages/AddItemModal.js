@@ -36,25 +36,12 @@ class AddItemModal extends Component {
       >
         <IonHeader>
           <IonToolbar color="primary">
-            <IonTitle>Add Item</IonTitle>
+            <IonTitle>New Message</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonContent padding>
-          <p>This is modal content</p>
           <IonItem>
-            <IonLabel position="stacked">Subject</IonLabel>
-            <IonInput type="text" ref={this.subject} name="subject" />
-          </IonItem>
-          <IonItem>
-            <IonLabel position="stacked">Due Date</IonLabel>
-            <IonDatetime
-              display-format="MMM DD, YYYY"
-              ref={this.dueDate}
-              name="body"
-            />
-          </IonItem>
-          <IonItem>
-            <IonLabel position="stacked">Summary</IonLabel>
+            <IonLabel position="stacked">Message</IonLabel>
             <IonTextarea rows={6} ref={this.body} name="body" />
           </IonItem>
         </IonContent>

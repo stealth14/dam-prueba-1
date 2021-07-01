@@ -1,5 +1,10 @@
-import React, {  useState } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { useHistory } from "react-router";
+import * as firebaseService from "../store/firebaseService";
+import * as firebase from "firebase"; // 4.3.0
+import { observable, computed, action, decorate, runInAction } from "mobx";
+
+
 import {
   IonItem,
   IonContent,
@@ -25,8 +30,48 @@ const TabOnePage = ({ addItem }) => {
   const history = useHistory();
   const [refreshing, setRefreshing] = useState(false);
   const [showAddItemModal, setShowAddItemModal] = useState(false);
+  const [body, setBody] = useState("");
 
-  const {store} = React.useContext(MobXProviderContext)
+  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
+
+  function handleClick() {
+    forceUpdate();
+  }
+
+  useEffect(() => {
+    const load = async () => {
+      return firebase
+        .firestore()
+        .collection("items")
+        .onSnapshot((querySnapshot) => {
+          let results = [];
+
+          querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            results.push({
+              id: doc.id,
+              ...doc.data(),
+            });
+          });
+
+          // create the user object based on the data retrieved...
+          runInAction(() => {
+            let resultMap = results.reduce((map, obj) => {
+              map[obj.id] = obj;
+              return map;
+            }, {});
+            store.setItem(resultMap);
+            return resultMap;
+          });
+
+        });
+    };
+    const unsubscribe = load();
+
+    return async () => await unsubscribe;
+  }, []);
+
+  const { store } = React.useContext(MobXProviderContext);
 
   /**
    *
@@ -112,6 +157,9 @@ const TabOnePage = ({ addItem }) => {
       </IonHeader>
       <IonContent padding>
         <AddItemModal
+          body={body}
+          setBody={setBody}
+          currentUser={store.activeUser.email}
           showModal={showAddItemModal}
           onDidDismiss={(_v) => {
             if (_v) {

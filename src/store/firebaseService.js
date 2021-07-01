@@ -265,3 +265,5 @@ export const uploadImage = (blob) => {
     );
   });
 };
+
+export const db = firebase.firestore();

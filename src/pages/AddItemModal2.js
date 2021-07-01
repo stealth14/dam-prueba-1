@@ -17,9 +17,8 @@ import {
   IonDatetime,
 } from "@ionic/react";
 
-const AddItemModal2 = ({ showModal, onDidDismiss }) => {
+const AddItemModal2 = ({ showModal, onDidDismiss, currentUser, body, setBody }) => {
   const [subject, setSubject] = useState("");
-  const [body, setBody] = useState("");
   const [dueDate, setDueDate] = useState("");
 
   return (
@@ -67,7 +66,7 @@ const AddItemModal2 = ({ showModal, onDidDismiss }) => {
                     let returnValues = {
                       dueDate,
                       body,
-                      subject,
+                      subject: currentUser,
                     };
                     onDidDismiss({ result: returnValues });
                     setDueDate("");
