@@ -2,7 +2,13 @@ import * as firebase from "firebase"; // 4.3.0
 require("firebase/firestore");
 
 var firebaseConfig = {
-
+  apiKey: "AIzaSyDp5AwpqrarWhe1H9LsQjrYgNQlYj3SLe4",
+  authDomain: "proyecto-8210b.firebaseapp.com",
+  projectId: "proyecto-8210b",
+  storageBucket: "proyecto-8210b.appspot.com",
+  messagingSenderId: "838157121790",
+  appId: "1:838157121790:web:45009b3569c846e3268daf",
+  measurementId: "G-NZ3TKZ0DKZ"
 };
 
 // Ensure that you do not login twice.

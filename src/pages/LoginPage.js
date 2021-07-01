@@ -63,7 +63,6 @@ const LoginPage = () => {
               setEmail(e.detail.value);
             }}
             name="email"
-            value="test@test.com"
           />
         </IonItem>
         <IonItem>
