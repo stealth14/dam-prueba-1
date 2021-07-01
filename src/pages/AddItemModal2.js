@@ -25,29 +25,13 @@ const AddItemModal2 = ({ showModal, onDidDismiss, currentUser, body, setBody }) 
     <IonModal isOpen={showModal} onDidDismiss={() => onDidDismiss()}>
       <IonHeader>
         <IonToolbar color="primary">
-          <IonTitle>Add Item</IonTitle>
+          <IonTitle>New Message</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent padding>
-        <p>This is modal content</p>
+
         <IonItem>
-          <IonLabel position="stacked">Subject</IonLabel>
-          <IonInput
-            type="text"
-            onIonChange={(e) => setSubject(e.detail.value)}
-            name="subject"
-          />
-        </IonItem>
-        <IonItem>
-          <IonLabel position="stacked">Due Date</IonLabel>
-          <IonDatetime
-            display-format="MMM DD, YYYY"
-            onIonChange={(e) => setDueDate(e.detail.value)}
-            name="dueDate"
-          />
-        </IonItem>
-        <IonItem>
-          <IonLabel position="stacked">Summary</IonLabel>
+          <IonLabel position="stacked">Message</IonLabel>
           <IonTextarea
             rows={6}
             onIonChange={(e) => setBody(e.detail.value)}

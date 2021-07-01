@@ -45,7 +45,7 @@ const TabOnePage = ({ addItem }) => {
         .collection("items")
         .onSnapshot((querySnapshot) => {
           let results = [];
-
+          console.log("new message")
           querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
             results.push({
@@ -150,7 +150,7 @@ const TabOnePage = ({ addItem }) => {
                 setShowAddItemModal(true);
               }}
             >
-              ADD ITEM
+              NEW MESSAGE
             </IonButton>
           </IonButtons>
         </IonToolbar>
@@ -171,7 +171,6 @@ const TabOnePage = ({ addItem }) => {
         />
 
         <IonItem lines="none">
-          <h1>Tab One Page</h1>
         </IonItem>
         <IonItem lines="none">
           <IonLabel>Current User: {store.activeUser.email}</IonLabel>
